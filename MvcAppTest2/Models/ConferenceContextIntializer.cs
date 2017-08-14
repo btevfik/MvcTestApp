@@ -6,30 +6,30 @@ using System.Web;
 
 namespace MvcAppTest2.Models
 {
-    public class ConferenceContextIntializer : DropCreateDatabaseAlways<ConferenceContext>
+    public class ConferenceContextIntializer : CreateDatabaseIfNotExists<ConferenceContext>
     {
         protected override void Seed(ConferenceContext context)
         {
             context.Sessions.Add(
                 new Session()
                 {
-                    Title = "I want spagetti",
-                    Abstract = "The life and times of a spagetti lover",
+                    Title = "MVC Test Session",
+                    Abstract = "This is about testing MVC",
                     Speaker = context.Speakers.Add(new Speaker()
                     {
-                        Name = "Baris TEVFIK",
-                        EmailAdd = "Baris@yahoo.com",
+                        Name = "Baris Tevfik",
+                        EmailAdd = "baristevfik@example.com",
                         BirthDay = new DateTime(1990, 12, 12)
                     }),
                     Comments = new List<Comment>()
                     {
                         new Comment()
                         {
-                            Content="This is a comment and its awesome. -baris"
+                            Content="This is a comment."
                         },
                         new Comment()
                         {
-                            Content="Comment number 2."
+                            Content="This is number two comment."
                         }
                     }
                 });

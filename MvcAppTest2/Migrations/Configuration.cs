@@ -1,6 +1,8 @@
 namespace MvcAppTest2.Migrations
 {
+    using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -15,18 +17,30 @@ namespace MvcAppTest2.Migrations
 
         protected override void Seed(MvcAppTest2.Models.ConferenceContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Sessions.AddOrUpdate(
+               new Session()
+               {
+                   Title = "MVC Test Session (migration seed)",
+                   Abstract = "This is about testing MVC (migration seed)",
+                   Speaker = context.Speakers.Add(new Speaker()
+                   {
+                       Name = "Baris Tevfik (migration seed)",
+                       EmailAdd = "baristevfik@example.com",
+                       BirthDay = new DateTime(1990, 12, 12)
+                   }),
+                   Comments = new List<Comment>()
+                   {
+                        new Comment()
+                        {
+                            Content="This is a comment. (migration seed)"
+                        },
+                        new Comment()
+                        {
+                            Content="This is number two comment. (migration seed)"
+                        }
+                   }
+               });
+            context.SaveChanges();
         }
     }
 }

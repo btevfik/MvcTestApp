@@ -11,12 +11,7 @@ namespace MvcAppTest2.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            ViewBag.Message = "I want some spagetti";
-            return View();
-        }
-
-        public ActionResult Spagetti()
-        {
+            ViewBag.Message = "This message is from viewbag.";
             return View();
         }
     }
